@@ -1,33 +1,51 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-	int n,sereja=0,dima=0,value;
-	cin>>n;
-	vector<int> a;
-	for(int i=0;i<n;i++)
-		{
-			cin>>value;
-			a.push_back(value);
-		}
-//	sereja+=max(a.front(),a.back());
-//	a.erase(max);
-//	dima+=max(a.front(),a.back());
-	while(n>0)
-	{
-		cout<<a.size()<<"  ";
-		int maximum = max(a.front(),a.back());
-		sereja+=maximum;
-		if(maximum == a.front())
-			a.erase(a.begin());
-		else
-			a.pop_back();
-		int max2 = max(a.front(),a.back());
-		dima+=max2;
-		if(max2 == a.front())
-			a.erase(a.begin());
-		else
-			a.pop_back();
-		n-=2;	
-	}
-	cout<<sereja<<" " <<dima;
+		  int n;
+			cin>>n;
+			int a[n];
+		for(int i=0;i<n;i++)
+        {
+			cin>>a[i];
+        }
+ 
+        int l=0,r=n-1;
+ 
+        int s=0,d=0;
+ 
+        bool p=true;
+ 
+        while(l<=r)
+        {
+            if(a[l]>=a[r])
+            {
+              if(p)
+                  s+=a[l];
+              else
+                  d+=a[l];
+ 
+              l++;
+ 
+            }
+ 
+            else if(a[r]>a[l])
+            {
+                if(p)
+                    s+=a[r];
+                else
+                    d+=a[r];
+ 
+                r--;
+            }
+ 
+            if(p)
+                p=false;
+            else
+                p=true;
+        }
+ 
+		cout<<s<<" "<<d;
+ 
+   
+
 }
